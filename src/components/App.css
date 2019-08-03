@@ -1,0 +1,19 @@
+
+* {
+  box-sizing: 0;
+}
+
+header {
+  min-height: 60px;
+  height : 10%;
+  border : 2px rgb(0, 0, 59) solid;
+}
+
+.board {
+  background-color : rgb(165, 165, 165);
+}
+
+.task {
+  background-color : gray;
+  border : 2px rgb(0, 0, 59) solid;
+}
