@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <header>
         <h1>
-          This is the Trello Clone with SQL! Wow!
+          This is the Trello Clone that will use SQL! Wow!
         </h1>
       </header>
       <Panel />

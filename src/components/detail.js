@@ -1,15 +1,16 @@
 
 import React from 'react';
 
-// Need to add an id number to this task.
+export default function Detail(props) {
+    function onClick() {
+        props.onDetailRemove(props.index);
+    }
 
-function Detail(props) {
     return (
-        <div className="detail">
-            <h4>{props.description}</h4>
-            <input type="button" className="remove-task-button remove-1" value="Remove Detail" />
-        </div>
+        <li index={props.index}>
+            <h5>{props.description}</h5>
+            <input type="button" className={`remove-detail-button`}
+                value="Remove Detail" placeholder="Remove Details" onClick={onClick} />
+        </li>
     );
 }
-
-export default Detail;
