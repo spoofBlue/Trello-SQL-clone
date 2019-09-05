@@ -20,18 +20,18 @@ export default class Task extends React.Component {
         console.log(`remove detail at index: `, index);
         console.log(this.state);
         let newDetails = this.state.details;
-        newDetails.pop(index);
+        newDetails.splice(index, 1);
         this.setState({ details: newDetails });
     }
 
     addDetail(text) {
         console.log(`add text in Task: `, text);
-        this.setState({ details: [...this.state.details, { text }] });
+        this.setState({ details: [...this.state.details, text] });
     }
 
     render() {
         const details = this.state.details.map((detail, index) =>
-            <Detail index={index} description={detail} onDetailRemove={this.removeDetail} />
+            <Detail index={index} description={detail} removeItem={this.removeDetail} />
         );
 
         return (
@@ -40,7 +40,7 @@ export default class Task extends React.Component {
                 <input type="button" className="remove-task-button" value="Remove Task" />
                 <h4>Details</h4>
                 <ul>{details}</ul>
-                <AddForm type="Detail" addDetail={this.addDetail} />
+                <AddForm type="Detail" addItem={this.addDetail} />
             </div>
         );
     }
