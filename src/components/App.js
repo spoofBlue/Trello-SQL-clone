@@ -13,8 +13,10 @@ function App() {
           This is the Trello Clone that will use SQL! Wow!
         </h1>
       </header>
-      <Panel />
-      <Board />
+      <main>
+        <Panel />
+        <Board />
+      </main>
     </div>
   );
 }

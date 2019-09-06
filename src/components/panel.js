@@ -5,8 +5,11 @@ function Panel() {
     return (
         <div className="panel">
             <h2>Options:</h2>
-            <input type="button" className="create-new-task" value="Create Task" />
-            <input type="text" className="new-task-text" placeholder="Describe new task to add here..." />
+            <ul>
+                <li><button>Name Board</button></li>
+                <li><button>Save Board</button></li>
+                <li><button>Reset Board</button></li>
+            </ul>
         </div>
     )
 }

@@ -2,6 +2,7 @@
 import React from 'react';
 import Detail from './detail';
 import AddForm from './add-form';
+import DeleteForm from './delete-form';
 
 // Specify an id to each task for reference.
 
@@ -9,7 +10,7 @@ export default class Task extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            details: ["Use water, not ethanol", "Please wear clothes while doing it."]
+            details: ["Use water, not ethanol", "Please wear clothes while doing it."],
         };
 
         this.removeDetail = this.removeDetail.bind(this);
@@ -31,13 +32,15 @@ export default class Task extends React.Component {
 
     render() {
         const details = this.state.details.map((detail, index) =>
-            <Detail index={index} description={detail} removeItem={this.removeDetail} />
+            <li key={index}>
+                <Detail index={index} detailDescription={detail} removeItem={this.removeDetail} />
+            </li>
         );
 
         return (
-            <div className="task" >
-                <h3>{this.props.taskName}</h3>
-                <input type="button" className="remove-task-button" value="Remove Task" />
+            <div className="task" index={this.props.index}>
+                <h3>{this.props.taskDescription}</h3>
+                <DeleteForm type="Task" {...this.props} />
                 <h4>Details</h4>
                 <ul>{details}</ul>
                 <AddForm type="Detail" addItem={this.addDetail} />

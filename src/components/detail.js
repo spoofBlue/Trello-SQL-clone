@@ -4,10 +4,10 @@ import DeleteForm from './delete-form';
 
 export default function Detail(props) {
     return (
-        <li index={props.index}>
-            <h5>{props.description}</h5>
+        <div className="detail" index={props.index}>
+            <h5>{props.detailDescription}</h5>
             <DeleteForm type="Detail" {...props} />
-        </li>
+        </div>
     );
 }
 
