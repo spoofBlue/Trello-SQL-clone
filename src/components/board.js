@@ -1,5 +1,7 @@
 
 import React from 'react';
+//import {connect} from 'react-redux';
+
 import Task from './task';
 import AddForm from './add-form';
 
@@ -17,8 +19,7 @@ export default class Board extends React.Component {
     removeTask(index) {
         console.log(`remove task at index: `, index);
         console.log(this.state);
-        let newTasks = this.state.tasks;
-        newTasks.splice(index, 1);
+        const newTasks = this.state.tasks.filter(task => task !== index);    //Note, this assumes we're still using the task text as the task's index.
         this.setState({ tasks: newTasks });
     }
 
@@ -27,9 +28,9 @@ export default class Board extends React.Component {
     }
 
     render() {
-        const tasks = this.state.tasks.map((task, index) =>
-            <li key={index} >
-                <Task index={index} taskDescription={task} removeItem={this.removeTask} />
+        const tasks = this.state.tasks.map((task) =>
+            <li key={task} >
+                <Task index={task} taskDescription={task} removeItem={this.removeTask} />
             </li>
         );
         return (

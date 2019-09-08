@@ -1,6 +1,6 @@
 
 import React from 'react';
-//import mainReducer from '../reducers/reducer';
+//import rootReducer from '../reducers/index';
 import './App.css';
 import Board from './board';
 import Panel from './panel';

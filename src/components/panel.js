@@ -6,7 +6,8 @@ function Panel() {
         <div className="panel">
             <h2>Options:</h2>
             <ul>
-                <li><button>Name Board</button></li>
+                <li><button>Rename Board</button></li>
+                <li><button>Add new member</button></li>
                 <li><button>Save Board</button></li>
                 <li><button>Reset Board</button></li>
             </ul>

@@ -20,8 +20,7 @@ export default class Task extends React.Component {
     removeDetail(index) {
         console.log(`remove detail at index: `, index);
         console.log(this.state);
-        let newDetails = this.state.details;
-        newDetails.splice(index, 1);
+        const newDetails = this.state.details.filter(detail => detail !== index);    //Note, this assumes we're still using the detail text as the detail's index.
         this.setState({ details: newDetails });
     }
 
@@ -31,9 +30,10 @@ export default class Task extends React.Component {
     }
 
     render() {
-        const details = this.state.details.map((detail, index) =>
-            <li key={index}>
-                <Detail index={index} detailDescription={detail} removeItem={this.removeDetail} />
+        // If editing <Detail>'s index, see removeDetail function above on how to filter out the removed detail.
+        const details = this.state.details.map((detail) =>
+            <li key={detail}>
+                <Detail index={detail} detailDescription={detail} removeItem={this.removeDetail} />
             </li>
         );
 
