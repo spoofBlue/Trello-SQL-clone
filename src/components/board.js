@@ -2,6 +2,7 @@
 // Libraries
 import React from 'react';
 import { connect } from 'react-redux';
+import PropType from 'prop-types';
 
 // Components
 import Task from './task';
@@ -18,10 +19,6 @@ export class Board extends React.Component {
         this.removeTask = this.removeTask.bind(this);
     }
 
-    componentDidMount() {
-        this.props.dispatch(resetComponents());
-    }
-
     removeTask(index) {
         this.props.dispatch(removeTaskFromBoard(this.props.tasks, index));
     }
@@ -31,25 +28,42 @@ export class Board extends React.Component {
     }
 
     render() {
-        const tasks = this.props.tasks.map((task) =>
-            <li key={task} >
-                <Task index={task} taskDescription={task} removeItem={this.removeTask} />
-            </li>
-        );
+        let tasks;
+        if (this.props.tasks.length > 0) {
+            tasks =
+                <ul>
+                    {this.props.tasks.map((task) =>
+                        <li key={task} >
+                            <Task index={task} taskDescription={task} removeItem={this.removeTask} />
+                        </li>
+                    )}
+                </ul>;
+        } else {
+            tasks = <p>You have no tasks.</p>;
+        }
+
         return (
             <div className="board">
-                <AddForm type="Task" addItem={this.addTask} />
                 <h2>My Board</h2>
-                <ul>{tasks}</ul>
+                <AddForm type="Task" addItem={this.addTask} />
+                {tasks}
             </div>
         );
     }
 }
 
+Board.propTypes = {
+    tasks: PropType.array,
+    name: PropType.string,
+    members: PropType.array
+}
+
 const mapStateToProps = state => {
     console.log('state in board: ', state);
     return ({
-        tasks: state.tasks
+        name: state.name,
+        tasks: state.tasks,
+        members: state.members
     });
 }
 

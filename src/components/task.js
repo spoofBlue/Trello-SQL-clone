@@ -14,7 +14,7 @@ export default class Task extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            details: ["Use water, not ethanol", "Please wear clothes while doing it."],
+            details: ["This is an example detail."],
         };
 
         this.removeDetail = this.removeDetail.bind(this);
@@ -35,18 +35,25 @@ export default class Task extends React.Component {
 
     render() {
         // If editing <Detail>'s index, see removeDetail function above on how to filter out the removed detail.
-        const details = this.state.details.map((detail) =>
-            <li key={detail}>
-                <Detail index={detail} detailDescription={detail} removeItem={this.removeDetail} />
-            </li>
-        );
+        let details;
+        if (this.state.details.length > 0) {
+            details =
+                <ul>
+                    {this.state.details.map((detail) =>
+                        <li key={detail}>
+                            <Detail index={detail} detailDescription={detail} removeItem={this.removeDetail} />
+                        </li>)}
+                </ul>;
+        } else {
+            details = <p>There are no details specified.</p>;
+        }
 
         return (
             <div className="task" index={this.props.index}>
                 <h3>{this.props.taskDescription}</h3>
                 <DeleteForm type="Task" {...this.props} />
                 <h4>Details</h4>
-                <ul>{details}</ul>
+                {details}
                 <AddForm type="Detail" addItem={this.addDetail} />
             </div>
         );
