@@ -1,34 +1,37 @@
 
+// Libraries
 import React from 'react';
-//import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
+// Components
 import Task from './task';
 import AddForm from './add-form';
 
-export default class Board extends React.Component {
+// Actions
+import { resetComponents, removeTaskFromBoard, addTaskToBoard } from '../actions/index';
+
+export class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tasks: ["Do the dishes du.", "Mow the lawn."]
-        }
 
-        this.removeTask = this.removeTask.bind(this);
         this.addTask = this.addTask.bind(this);
+        this.removeTask = this.removeTask.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(resetComponents());
     }
 
     removeTask(index) {
-        console.log(`remove task at index: `, index);
-        console.log(this.state);
-        const newTasks = this.state.tasks.filter(task => task !== index);    //Note, this assumes we're still using the task text as the task's index.
-        this.setState({ tasks: newTasks });
+        this.props.dispatch(removeTaskFromBoard(this.props.tasks, index));
     }
 
     addTask(text) {
-        this.setState({ tasks: [...this.state.tasks, text] });
+        this.props.dispatch(addTaskToBoard(this.props.tasks, text));
     }
 
     render() {
-        const tasks = this.state.tasks.map((task) =>
+        const tasks = this.props.tasks.map((task) =>
             <li key={task} >
                 <Task index={task} taskDescription={task} removeItem={this.removeTask} />
             </li>
@@ -42,3 +45,12 @@ export default class Board extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    console.log('state in board: ', state);
+    return ({
+        tasks: state.tasks
+    });
+}
+
+export default connect(mapStateToProps)(Board);

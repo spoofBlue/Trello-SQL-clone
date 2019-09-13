@@ -1,10 +1,14 @@
 
+// Libraries
 import React from 'react';
+import { connect } from 'react-redux';
+
+// Components
 import Detail from './detail';
 import AddForm from './add-form';
 import DeleteForm from './delete-form';
 
-// Specify an id to each task for reference.
+// Actions
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -48,3 +52,11 @@ export default class Task extends React.Component {
         );
     }
 }
+
+/*
+const mapStateToProps = state => {
+    return ({
+        details : state.details
+    });
+}
+*/

@@ -1,13 +1,13 @@
 
 // Actions
-import { DISPLAY_LOADING, RESET_COMPONENT } from '../actions/index';
+import { DISPLAY_LOADING, RESET_COMPONENT, CHANGE_TASKS } from '../actions/index';
 
 // Initial
 const initialState = {
+    tasks: ["Do the dishes.", "Mow the lawn.", "File those reports."],
     loading: false,
     error: null
 }
-
 
 //Reducer
 export default function rootReducer(state = initialState, action) {
@@ -20,6 +20,11 @@ export default function rootReducer(state = initialState, action) {
         return Object.assign({}, state, {
             loading: false,
             error: null
+        });
+    } else if (action.type === CHANGE_TASKS) {
+        return Object.assign({}, state, {
+            loading: false,
+            tasks: action.tasks
         });
     }
     return state;

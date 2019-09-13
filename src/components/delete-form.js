@@ -3,8 +3,9 @@ import React from 'react';
 
 export default function DeleteForm(props) {
     function onClick() {
-        console.log(props);
-        props.removeItem(props.index);
+        console.log('in deleteForm. props=', props);
+        const index = props.index;
+        props.removeItem(index);
     }
 
     return (
